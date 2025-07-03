@@ -1,8 +1,9 @@
 import React from 'react';
 
-import NativeUnityView, { Commands } from './specs/UnityViewNativeComponent';
-import type { DirectEventHandler } from 'react-native/Libraries/Types/CodegenTypes';
+import type { StyleProp, ViewStyle } from 'react-native';
 import { Platform } from 'react-native';
+import type { DirectEventHandler } from 'react-native/Libraries/Types/CodegenTypes';
+import NativeUnityView, { Commands } from './specs/UnityViewNativeComponent';
 
 type UnityViewContentUpdateEvent = Readonly<{
   message: string;
@@ -14,6 +15,7 @@ type RNUnityViewProps = {
   onUnityMessage?: DirectEventHandler<UnityViewContentUpdateEvent>;
   onPlayerUnload?: DirectEventHandler<UnityViewContentUpdateEvent>;
   onPlayerQuit?: DirectEventHandler<UnityViewContentUpdateEvent>;
+  style?: StyleProp<ViewStyle>;
 };
 
 type ComponentRef = InstanceType<typeof NativeUnityView>;
