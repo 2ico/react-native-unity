@@ -22,19 +22,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azesmway/react-native-unity@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@azesmway/react-native-unity@npm:0.4.0"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: ac4ae16a67ffe2756d5020f4594b04f63a71542903c6f5e37980acdc920533f1380795390cd1acf04d1b8f8e20aae1cd3f3d1e3b1c86658957b2df0d82105fe7
-  languageName: node
-  linkType: hard
-
-"@azesmway/react-native-unity@workspace:.":
+"@artmajeur/react-native-unity@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@azesmway/react-native-unity@workspace:."
+  resolution: "@artmajeur/react-native-unity@workspace:."
   dependencies:
     "@commitlint/config-conventional": ^17.0.2
     "@evilmartians/lefthook": ^1.5.0
@@ -65,6 +55,16 @@ __metadata:
     react-native: "*"
   languageName: unknown
   linkType: soft
+
+"@azesmway/react-native-unity@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@azesmway/react-native-unity@npm:0.4.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: ac4ae16a67ffe2756d5020f4594b04f63a71542903c6f5e37980acdc920533f1380795390cd1acf04d1b8f8e20aae1cd3f3d1e3b1c86658957b2df0d82105fe7
+  languageName: node
+  linkType: hard
 
 "@babel/cli@npm:^7.23.4":
   version: 7.24.5

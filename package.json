@@ -1,6 +1,6 @@
 {
-  "name": "@azesmway/react-native-unity",
-  "version": "1.0.11",
+  "name": "@artmajeur/react-native-unity",
+  "version": "0.0.1",
   "description": "React Native Unity",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -32,7 +32,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "prepare": "bob build",
+    "prepare": "npx react-native-builder-bob build",
     "release": "release-it"
   },
   "keywords": [
@@ -43,14 +43,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azesmway/react-native-unity.git"
+    "url": "git+https://github.com/YourArtOfficial/react-native-unity.git"
   },
-  "author": "Alexey Zolotaryov <azesm@me.com> (https://github.com/azesmway)",
+  "author": "Alexey Zolotaryov <azesm@me.com> (https://github.com/azesmway), ArtMajeur Tech <dev@artmajeur.com> (https://github.com/YourArtOfficial)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azesmway/react-native-unity/issues"
+    "url": "https://github.com/YourArtOfficial/react-native-unity/issues"
   },
-  "homepage": "https://github.com/azesmway/react-native-unity#readme",
+  "homepage": "https://github.com/YourArtOfficial/react-native-unity#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
