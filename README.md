@@ -1,8 +1,9 @@
-# @YourArtOfficial/react-native-unity
+# @artmajeur/react-native-unity
 
 The plugin that allows you to embed a Unity project into React Native as a full-fledged component. The plugin now supports the new architecture.
 
 ### Android
+
 Attention! Added support for Unity 2023 and above
 
 > [!IMPORTANT]
@@ -22,16 +23,16 @@ Attention! Added support for Unity 2023 and above
 ## Install this package in your react-native project:
 
 ```sh
-npm install @YourArtOfficial/react-native-unity
+npm install @artmajeur/react-native-unity
 
 or
 
-yarn add @YourArtOfficial/react-native-unity
+yarn add @artmajeur/react-native-unity
 ```
 
 ## Configure your Unity project:
 
-1. Copy the contents of the folder `unity` to the root of your Unity project. This folder contains the necessary scripts and settings for the Unity project. You can find these files in your react-native project under `node_modules/@YourArtOfficial/react-native-unity/unity`. This is necessary to ensure iOS has access to the `NativeCallProxy` class from this library.
+1. Copy the contents of the folder `unity` to the root of your Unity project. This folder contains the necessary scripts and settings for the Unity project. You can find these files in your react-native project under `node_modules/@artmajeur/react-native-unity/unity`. This is necessary to ensure iOS has access to the `NativeCallProxy` class from this library.
 
 2. (optional) If you're following along with the example, you can add the following code to the `ButtonBehavior.cs` script in your Unity project. This allows the button press in Unity to communicate with your react-native app.
 
@@ -59,7 +60,7 @@ public class ButtonBehavior : MonoBehaviour
   {
     if (Application.platform == RuntimePlatform.Android)
     {
-      using (AndroidJavaClass jc = new AndroidJavaClass("com.YourArtOfficialreactnativeunity.ReactNativeUnityViewManager"))
+      using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
       {
         jc.CallStatic("sendMessageToMobileApp", "The button has been tapped!");
       }
@@ -136,7 +137,7 @@ If you're using expo, you're done. The built-in expo plugin will handle the rest
 ```jsx
 import React, { useRef, useEffect } from 'react';
 
-import UnityView from '@YourArtOfficial/react-native-unity';
+import UnityView from '@artmajeur/react-native-unity';
 import { View } from 'react-native';
 
 interface IMessage {

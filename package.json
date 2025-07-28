@@ -1,6 +1,6 @@
 {
   "name": "@artmajeur/react-native-unity",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "React Native Unity",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
