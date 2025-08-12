@@ -1,3 +1,11 @@
+# Usage
+
+expects environmment variable `UNITY_XCODE_BUILD` pointing to Unity XCode Build
+
+to use locally run `npm pack` after `yarn install` to create an archived version of the module that then can be installed via path like this `npm install "file:../../react-native-unity/artmajeur-react-native-unity-0.0.6.tgz"`
+
+---
+
 # @artmajeur/react-native-unity
 
 The plugin that allows you to embed a Unity project into React Native as a full-fledged component. The plugin now supports the new architecture.
