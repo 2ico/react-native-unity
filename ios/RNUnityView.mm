@@ -82,12 +82,20 @@ static RNUnityView *sharedInstance;
 }
 
 - (void)layoutSubviews {
-   [super layoutSubviews];
+   [super layoutSubviews];  
+  
+   if([self unityIsInitialized]) {  
+      self.ufw.appController.rootView.frame = self.bounds;  
+      // Check if rootView is already a subview before adding  
+      if (![self.subviews containsObject:self.ufw.appController.rootView]) {  
+        [self addSubview:self.ufw.appController.rootView];  
 
-   if([self unityIsInitialized]) {
-      self.ufw.appController.rootView.frame = self.bounds;
-      [self addSubview:self.ufw.appController.rootView];
-   }
+        // Force immediate layout and rendering  
+        [self.ufw.appController.rootView setNeedsLayout];  
+        [self.ufw.appController.rootView layoutIfNeeded];  
+        [self.ufw.appController.rootView setNeedsDisplay];  
+      }  
+   }  
 }
 
 - (void)pauseUnity:(BOOL * _Nonnull)pause {
@@ -158,14 +166,14 @@ static RNUnityView *sharedInstance;
     [super prepareForRecycle];
 
     if ([self unityIsInitialized]) {
-      [[self ufw] unloadApplication];
 
-      NSArray *viewsToRemove = self.subviews;
-      for (UIView *v in viewsToRemove) {
-          [v removeFromSuperview];
-      }
-
-      [self setUfw:nil];
+      // Don't unload Unity completely, just remove from view hierarchy  
+      [self.ufw.appController.rootView removeFromSuperview];  
+        
+      // Pause Unity instead of unloading  
+      [[self ufw] pause:true];  
+        
+      // Don't set ufw to nil - keep the framework instance alive 
     }
 }
 
@@ -177,6 +185,9 @@ static RNUnityView *sharedInstance;
   if (self = [super initWithFrame:frame]) {
     static const auto defaultProps = std::make_shared<const RNUnityViewProps>();
     _props = defaultProps;
+      
+    // Properly manage static instance  
+    sharedInstance = self;  
 
     self.onUnityMessage = [self](NSDictionary* data) {
       if (_eventEmitter != nil) {
@@ -197,9 +208,12 @@ static RNUnityView *sharedInstance;
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
-    if (![self unityIsInitialized]) {
-      [self initUnityModule];
-    }
+    if ([self unityIsInitialized]) {  
+        // Resume Unity if it was paused  
+        [[self ufw] pause:false];  
+    } else {  
+        [self initUnityModule];  
+    }  
 
     [super updateProps:props oldProps:oldProps];
 }
@@ -207,6 +221,22 @@ static RNUnityView *sharedInstance;
 - (void)handleCommand:(nonnull const NSString *)commandName args:(nonnull const NSArray *)args {
     RCTRNUnityViewHandleCommand(self, commandName, args);
 }
+
+- (void)dealloc {  
+    if (sharedInstance == self) {  
+        sharedInstance = nil;  
+    }  
+    if ([self unityIsInitialized]) {  
+        [[self ufw] unloadApplication];  
+          
+        NSArray *viewsToRemove = self.subviews;  
+        for (UIView *v in viewsToRemove) {  
+            [v removeFromSuperview];  
+        }  
+          
+        [self setUfw:nil];  
+    }  
+}  
 
 Class<RCTComponentViewProtocol> RNUnityViewCls(void) {
     return RNUnityView.class;
