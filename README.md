@@ -1,9 +1,9 @@
 # Usage
 
-expects environmment variable `UNITY_XCODE_BUILD` pointing to Unity XCode Build
+expects environmment variable `UNITY_FRAMEWORK_DIR` pointing to Unity XCode Build
 Like this:
 ```bash
-export UNITY_XCODE_BUILD=/path/to/your/UnityFramework.framework
+export UNITY_FRAMEWORK_DIR=/path/to/your/unity/builds/ios/
 ```
 
 to use locally run `npm pack` after `yarn install` to create an archived version of the module that then can be installed via path like this `npm install "file:../../react-native-unity/artmajeur-react-native-unity-0.0.6.tgz"`
